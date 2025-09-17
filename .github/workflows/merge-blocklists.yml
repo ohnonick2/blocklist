@@ -1,0 +1,108 @@
+name: Merge Blocklists
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'blocklists/**'
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - 'blocklists/**'
+  schedule:
+    # Run daily at 02:00 UTC to ensure lists stay updated
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  merge-blocklists:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Create merged directory
+      run: mkdir -p merged
+    
+    - name: Merge blocklists
+      run: |
+        # Create header for merged file
+        echo "# Merged Blocklist" > merged/all.txt
+        echo "# Automatically generated from individual blocklist files" >> merged/all.txt
+        echo "# Last updated: $(date -u)" >> merged/all.txt
+        echo "# Repository: https://github.com/${{ github.repository }}" >> merged/all.txt
+        echo "# Raw URL: https://raw.githubusercontent.com/${{ github.repository }}/main/merged/all.txt" >> merged/all.txt
+        echo "#" >> merged/all.txt
+        echo "# This file is compatible with Technitium DNS Server and other DNS-based blockers" >> merged/all.txt
+        echo "# Format: One domain per line, comments start with #" >> merged/all.txt
+        echo "" >> merged/all.txt
+        
+        # Function to process blocklist files
+        process_file() {
+          local file="$1"
+          local category="$2"
+          
+          if [ -f "$file" ]; then
+            echo "" >> merged/all.txt
+            echo "# === $category ===" >> merged/all.txt
+            echo "" >> merged/all.txt
+            
+            # Extract domains (non-comment, non-empty lines) and sort them
+            grep -v '^#' "$file" | grep -v '^$' | sort -u >> merged/all.txt
+          fi
+        }
+        
+        # Process each blocklist file
+        process_file "blocklists/ads.txt" "Advertisement Domains"
+        process_file "blocklists/tracking.txt" "Tracking and Analytics Domains"
+        process_file "blocklists/custom.txt" "Custom Blocked Domains"
+        
+        # Remove any duplicate domains while preserving comments and structure
+        temp_file=$(mktemp)
+        awk '
+        /^#/ { print; next }
+        /^$/ { print; next }
+        { 
+          if (!seen[$0]) {
+            seen[$0] = 1
+            print
+          }
+        }' merged/all.txt > "$temp_file"
+        mv "$temp_file" merged/all.txt
+        
+        # Add final statistics
+        echo "" >> merged/all.txt
+        echo "# Statistics:" >> merged/all.txt
+        domain_count=$(grep -v '^#' merged/all.txt | grep -v '^$' | wc -l)
+        echo "# Total blocked domains: $domain_count" >> merged/all.txt
+        echo "# Generated: $(date -u)" >> merged/all.txt
+    
+    - name: Verify merged file
+      run: |
+        echo "Merged file size: $(wc -l < merged/all.txt) lines"
+        echo "Domain count: $(grep -v '^#' merged/all.txt | grep -v '^$' | wc -l) domains"
+        echo ""
+        echo "First 10 lines of merged file:"
+        head -10 merged/all.txt
+        echo ""
+        echo "Last 10 lines of merged file:"
+        tail -10 merged/all.txt
+    
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        if [ -n "$(git status --porcelain)" ]; then
+          git add merged/all.txt
+          git commit -m "Auto-update merged blocklist [$(date -u '+%Y-%m-%d %H:%M UTC')]"
+          git push
+        else
+          echo "No changes to commit"
+        fi

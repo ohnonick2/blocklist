@@ -1,0 +1,55 @@
+# Tracking and Analytics Blocklist
+# This file contains domains known for tracking user behavior
+# Format: One domain per line, no protocol prefix
+# Last updated: Auto-generated
+
+# Analytics and data collection
+analytics.google.com
+google-analytics.com
+googletagmanager.com
+hotjar.com
+mouseflow.com
+fullstory.com
+logrocket.com
+mixpanel.com
+segment.com
+amplitude.com
+
+# Social media tracking
+facebook.com
+connect.facebook.net
+pixel.facebook.com
+linkedin.com
+twitter.com
+pinterest.com
+instagram.com
+
+# Marketing and advertising tracking
+hubspot.com
+marketo.com
+pardot.com
+salesforce.com
+mailchimp.com
+constantcontact.com
+aweber.com
+
+# Third-party trackers
+scorecardresearch.com
+quantserve.com
+comscore.com
+alexa.com
+similarweb.com
+compete.com
+
+# Behavioral analytics
+crazy-egg.com
+optimizely.com
+unbounce.com
+leadpages.com
+clickfunnels.com
+
+# Fingerprinting and device tracking
+fingerprintjs.com
+maxmind.com
+ip-api.com
+ipinfo.io

@@ -1,0 +1,92 @@
+# Merged Blocklist
+# Automatically generated from individual blocklist files
+# Last updated: Wed Sep 17 16:14:04 UTC 2025
+# Repository: https://github.com/ohnonick2/blocklist
+# Raw URL: https://raw.githubusercontent.com/ohnonick2/blocklist/main/merged/all.txt
+#
+# This file is compatible with Technitium DNS Server and other DNS-based blockers
+# Format: One domain per line, comments start with #
+
+
+# === Advertisement Domains ===
+
+admob.com
+adnxs.com
+ads.twitter.com
+ads.yahoo.com
+adsense.google.com
+adsystem.amazon.com
+amazon-adsystem.com
+analytics.google.com
+applovin.com
+bit.ly
+content.ad
+criteo.com
+doubleclick.net
+facebook.com
+fbcdn.net
+google-analytics.com
+googleadservices.com
+googlesyndication.com
+googletagmanager.com
+ironsrc.com
+media.net
+outbrain.com
+pixel.facebook.com
+revcontent.com
+t.co
+taboola.com
+unity3d.com
+vungle.com
+
+# === Tracking and Analytics Domains ===
+
+alexa.com
+amplitude.com
+aweber.com
+clickfunnels.com
+compete.com
+comscore.com
+connect.facebook.net
+constantcontact.com
+crazy-egg.com
+fingerprintjs.com
+fullstory.com
+hotjar.com
+hubspot.com
+instagram.com
+ip-api.com
+ipinfo.io
+leadpages.com
+linkedin.com
+logrocket.com
+mailchimp.com
+marketo.com
+maxmind.com
+mixpanel.com
+mouseflow.com
+optimizely.com
+pardot.com
+pinterest.com
+quantserve.com
+salesforce.com
+scorecardresearch.com
+segment.com
+similarweb.com
+twitter.com
+unbounce.com
+
+# === Custom Blocked Domains ===
+
+coinhive.com
+cryptoloot.pro
+jsecoin.com
+link-hijacker.net
+malware-example.com
+phishing-example.org
+redirector-spam.com
+suspicious-site.net
+
+# Statistics:
+# Total blocked domains: 70
+# Generated: Wed Sep 17 16:14:04 UTC 2025

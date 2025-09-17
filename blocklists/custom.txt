@@ -1,0 +1,21 @@
+# Custom Blocklist
+# This file contains custom domains to block
+# Format: One domain per line, no protocol prefix
+# Last updated: Auto-generated
+
+# Malware and phishing (examples)
+malware-example.com
+phishing-example.org
+suspicious-site.net
+
+# Unwanted redirects
+redirector-spam.com
+link-hijacker.net
+
+# Cryptocurrency mining
+coinhive.com
+jsecoin.com
+cryptoloot.pro
+
+# Add your custom domains below this line
+# (one domain per line, no protocol prefix)

@@ -1,0 +1,40 @@
+# Advertisement Blocklist
+# This file contains domains known for serving advertisements
+# Format: One domain per line, no protocol prefix
+# Last updated: Auto-generated
+
+# Popular ad networks
+doubleclick.net
+googleadservices.com
+googlesyndication.com
+googletagmanager.com
+facebook.com
+fbcdn.net
+amazon-adsystem.com
+adsystem.amazon.com
+ads.twitter.com
+ads.yahoo.com
+
+# Banner/display ad networks
+media.net
+criteo.com
+outbrain.com
+taboola.com
+revcontent.com
+content.ad
+adnxs.com
+adsense.google.com
+
+# Mobile advertising
+admob.com
+unity3d.com
+applovin.com
+ironsrc.com
+vungle.com
+
+# Tracking pixels and beacons
+pixel.facebook.com
+t.co
+bit.ly
+analytics.google.com
+google-analytics.com

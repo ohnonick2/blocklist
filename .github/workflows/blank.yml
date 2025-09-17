@@ -1,0 +1,30 @@
+name: Merge Blocklists
+
+on:
+  push:
+    paths:
+      - 'blocklists/**'
+  workflow_dispatch:
+
+jobs:
+  merge-blocklists:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Create merged directory if it doesn't exist
+        run: mkdir -p merged
+        
+      - name: Merge blocklists
+        run: |
+          cat blocklists/*.txt | sort | uniq > merged/all.txt
+          
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add merged/all.txt
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update merged blocklist"
+          git push

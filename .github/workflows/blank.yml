@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -30,4 +31,9 @@ jobs:
           title: "Update merged blocklist"
           body: "Automatisch generierte Pull Request für die neue Blockliste"
           base: main
-          path: merged/all.txt
+          path: merged/           # <- Verzeichnis statt einzelner Datei
+          committer: GitHub <noreply@github.com>
+          author: ohnonick2 <ohnonick2@users.noreply.github.com>
+          signoff: false
+          delete-branch: false
+          draft: false

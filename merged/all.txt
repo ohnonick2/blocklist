@@ -1,0 +1,21 @@
+# Merged blocklist - Generated automatically
+# Generated on: Wed Sep 17 16:13:29 UTC 2025
+
+ads.yahoo.com
+adsystem.amazon.com
+amazon-adsystem.com
+amplitude.com
+analytics.google.com
+bing.com
+doubleclick.net
+example-spam.com
+facebook.com
+fullstory.com
+google-analytics.com
+googleadservices.com
+googlesyndication.com
+googletagmanager.com
+hotjar.com
+malicious-site.net
+mixpanel.com
+segment.com

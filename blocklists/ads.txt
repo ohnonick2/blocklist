@@ -1,0 +1,9 @@
+# Ad-serving domains
+doubleclick.net
+googleadservices.com
+googlesyndication.com
+amazon-adsystem.com
+facebook.com
+adsystem.amazon.com
+ads.yahoo.com
+bing.com

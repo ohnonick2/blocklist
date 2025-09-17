@@ -1,0 +1,9 @@
+# Tracking and analytics domains
+google-analytics.com
+googletagmanager.com
+analytics.google.com
+hotjar.com
+mixpanel.com
+segment.com
+amplitude.com
+fullstory.com

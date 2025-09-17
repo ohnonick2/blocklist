@@ -1,0 +1,4 @@
+# Custom blocked domains
+# Add your own domains here
+example-spam.com
+malicious-site.net

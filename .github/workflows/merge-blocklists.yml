@@ -1,0 +1,60 @@
+name: Merge Blocklists
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'blocklists/**'
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - 'blocklists/**'
+  workflow_dispatch:
+
+jobs:
+  merge-blocklists:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Merge blocklists
+      run: |
+        # Create merged directory if it doesn't exist
+        mkdir -p merged
+        
+        # Merge all .txt files from blocklists directory
+        echo "# Merged blocklist - Generated automatically" > merged/all.txt
+        echo "# Generated on: $(date)" >> merged/all.txt
+        echo "" >> merged/all.txt
+        
+        # Process each .txt file in blocklists directory
+        for file in blocklists/*.txt; do
+          if [ -f "$file" ]; then
+            echo "# From: $(basename "$file")" >> merged/all.txt
+            # Skip comment lines and empty lines, add non-comment content
+            grep -v '^#' "$file" | grep -v '^$' | sort -u >> merged/all.txt
+            echo "" >> merged/all.txt
+          fi
+        done
+        
+        # Remove duplicate entries and sort (keeping header)
+        head -3 merged/all.txt > merged/all.txt.tmp
+        tail -n +4 merged/all.txt | grep -v '^#' | grep -v '^$' | sort -u >> merged/all.txt.tmp
+        mv merged/all.txt.tmp merged/all.txt
+        
+        # Show summary
+        echo "Merged blocklist created with $(grep -v '^#' merged/all.txt | grep -v '^$' | wc -l) unique domains"
+        
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add merged/all.txt
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Auto-update merged blocklist"
+          git push
+        fi

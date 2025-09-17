@@ -31,9 +31,3 @@ jobs:
           title: "Update merged blocklist"
           body: "Automatisch generierte Pull Request für die neue Blockliste"
           base: main
-          path: merged/           # <- Verzeichnis statt einzelner Datei
-          committer: GitHub <noreply@github.com>
-          author: ohnonick2 <ohnonick2@users.noreply.github.com>
-          signoff: false
-          delete-branch: false
-          draft: false

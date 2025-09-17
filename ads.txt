@@ -1,0 +1,5 @@
+# Advertising domains blocklist
+# One domain per line
+ad.doubleclick.net
+ads.example.com
+adservice.google.com
